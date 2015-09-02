@@ -8,7 +8,6 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 from .models import Choice,  Question
-# Create your views here.
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
