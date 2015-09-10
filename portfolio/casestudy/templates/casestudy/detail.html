@@ -1,16 +1,23 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block 'content' %}
 <h1>{{ casestudy.name }}</h1>
 
-{% if casestudy.item_list %}
+{% if casestudy.item_set.all %}
 
 <table>
 
-{% for item in casestudy.item_set %}
+{% for item in casestudy.item_set.all %}
 <tr>
 <td colspan='2'>{{ item.title }}</td>
 </tr>
 
 <tr>
-<td><img src="/media/{{ item.image }}"></td>
+{% thumbnail item.photo "300x300" crop="center" as im %}
+<td><img src="{{ im.url }}">
+{% endthumbnail %}
+</td>
 <td>{{ item.description }}</td>
 </tr>
 
@@ -19,3 +26,4 @@
 </table>
 
 {% endif %}
+{% endblock %}
