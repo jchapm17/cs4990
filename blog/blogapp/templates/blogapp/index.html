@@ -9,7 +9,7 @@
 	
 		{% for post in post_list %}
 			{% include 'blogapp/_post.html' %}
-			<a href="{% url 'blogapp:detail' post.id %}#comment-section">Leave a comment...</a>
+			<a href="{% url 'blogapp:detail' post.id %}#comment-section">Read More ...</a>
 			{% if not forloop.last %}
 				<hr style="border-top: 1px solid black;">
 			{% endif %}

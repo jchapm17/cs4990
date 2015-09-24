@@ -13,10 +13,26 @@
 		{{ comment.comment_text }}
 		</div>
 
-		{% if not forloop.lat %}
+		{% if not forloop.last %}
 		<hr>
 		{% endif %}
 	{% empty %}
-		<p>Be the first of your friends to comment on this post.</p>
+		<br>
+		<h3>Be the first of your friends to comment on this post.</h3>
+		<br>
 	{% endfor %}
+<!--My attempt at a comment submission. I am aware that it does not really work. For the purposes of this assignment it's just a placeholder for looks.-->
+<form>
+<fieldset>
+<legend>Add Comment</legend>
+<label>Name:</label>
+<input type="text" name="title" id="title" maxlength="50" required="required">
+<br>
+<br>
+<label>Comment:</label>
+<br>
+<textarea rows="3" cols="20" name="description" maxlength="999" required="required" style="margin: 0px; width: 100%; height: 75px;"></textarea>
+</fieldset>
+<div id="submit"><input type="submit" value="Submit"></div>
+</form>
 {% endblock 'content' %}

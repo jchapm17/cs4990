@@ -7,6 +7,7 @@ class Post(models.Model):
 	picture = models.ImageField(upload_to="pics/%y/%m/%d", blank=True, null=True)
 	pub_date = models.DateTimeField()
 	category = models.ManyToManyField('Category', blank=True, null=True)
+	#category = models.ForeignKey('post.Category')
 	keywords = models.CharField(max_length=200, blank=True, null=True)
 
 	def __unicode__(self):

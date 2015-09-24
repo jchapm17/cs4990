@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
+from django.core.context_processors import csrf
 
 from .models import Post, Comment, Category
 # Create your views here.
@@ -14,12 +15,9 @@ class IndexView(generic.ListView):
 class PostDetailView(generic.DetailView):
 	model = Post	
 
-	#def get_context_data(self):
-	#	context = super(PostDetail,self).get_context_data()
-	#	context.update({"comment_list": self.get_object().comment_set.all()})
-	#	return context;
-
 class CategoryDetailView(generic.DetailView):
 	model = Category
 
 	# query set
+
+
