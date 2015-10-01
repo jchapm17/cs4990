@@ -12,7 +12,11 @@ class Item(models.Model):
 
 class Category(models.Model):
 	name = models.CharField(max_length=200)
-	descriptiom = models.TextField(blank=True, null=True)
+	description = models.TextField(blank=True, null=True)
+	parent = models.ForeignKey('self', null=True, blank=True)
 
 	def __unicode__(self):
 		return self.name
+
+	class Meta:
+		verbose_name_plural='categories'
