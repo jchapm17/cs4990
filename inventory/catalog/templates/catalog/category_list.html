@@ -2,17 +2,25 @@
 {% block 'title' %}List of Categories{% endblock %}
 {% block 'content' %}
 
-<ul>
+
+<h1>Categories</h1>
 {% for category in category_list %}
 
-	<li><a href="{% url 'catalog:categorydetail' category.id %}">{{ category.name }}</a></li>
+	<h4><a href="{% url 'catalog:categorydetail' category.id %}" style="color:black">
+	{% if category.parent %}<span style="color:gray">{{ category.parent}}</span>/{% else %}{%endif %}{{ category.name }}</a>
+	<a href="{% url 'catalog:categoryupdate' category.id %}"><span class="glyphicon glyphicon-edit"></span></a>
+	<a href="{% url 'catalog:deletecategory' category.id %}" style="color:red"><span class="glyphicon glyphicon-remove"></span></a></h4>
+	
+	<p>{{ category.description }}<p>
+	
 
 {% empty %}
 	<p>There are no categories. Want to <a href="{% url 'catalog:addcategory' %}">add one?</a></p>
 
 {% endfor %}
-</ul>
 
-<p><a href="{% url 'catalog:addcategory' %}">Add A New Category</a></p>
+<p><a style="color:black" href="{% url 'catalog:addcategory' %}"><span style="color:green" class="glyphicon glyphicon-plus"></span>&nbsp;Add A New Category</a></p>
 
 {% endblock %}
+
+

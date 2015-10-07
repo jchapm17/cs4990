@@ -8,6 +8,22 @@ from django.forms.models import model_to_dict
 from .models import Item, Category
 
 # Create your views here.
+class AjaxableResponseMixin(object):
+	def form_invalid(self, form):
+		response = super(AjazableResponseMixn, self).form_invalid(form)
+		if self.request.is_ajax():
+			return JsonResponse(form.errors, status=400)
+		else:
+			return response
+
+	def form_valid(self, form):
+		response = super(AjaxableResponseMixin, self).form_valid(form)
+		if self.request.is_ajax():
+			data = model_to_dict(self.object)
+			return JsonResponse(data)
+		else:
+			return response
+
 class CategoryListView(ListView):
 	model = Category
 
@@ -38,7 +54,7 @@ class CreateItemView(CreateView):
 	fields = ['name', 'quantity', 'sku', 'category']
 	
 	def get_success_url(self):
-		return reverse('catalog:categorydetail', ars=(self.object.category.id,))	
+		return reverse('catalog:categorydetail', args=(self.object.category.id,))	
 
 class UpdateItemView(UpdateView):
 	model = Item

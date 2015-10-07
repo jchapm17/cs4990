@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block 'title' %}{% if category %}Update{% else %}Add{% endif %} A Category{% endblock %}
+{% block 'title' %}{% if item %}Update{% else %}Add{% endif %} An Item{% endblock %}
 
 {% block 'extrascripts' %}
 <script>
 // $(function () {
 $(document).ready(function () {
- $('#categoryform').submit(
+ $('#itemform').submit(
     function (event) {
         event.preventDefault();
         $.ajax({
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 
 {% endblock %}
-<h1>{% if category %}Update{% else %}Add{% endif %} A Category</h1>
+<h1>{% if item %}Update{% else %}Add{% endif %} An Item</h1>
 {% block 'content' %}
 <form action="." method="post">
 {% csrf_token %}
@@ -36,7 +36,7 @@ $(document).ready(function () {
 {{ form }}
 <tr>
     <td colspan="2">
-        <button class="btn btn-primary">{% if category %}Update{% else %}Add{% endif %} Category</button>
+        <button class="btn btn-primary">{% if category %}Update{% else %}Add{% endif %} Item</button>
     </td>
 </tr>
 
