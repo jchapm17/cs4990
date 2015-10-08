@@ -9,6 +9,7 @@ from .models import Item, Category
 
 # Create your views here.
 class AjaxableResponseMixin(object):
+
 	def form_invalid(self, form):
 		response = super(AjaxableResponseMixin, self).form_invalid(form)
 		if self.request.is_ajax():

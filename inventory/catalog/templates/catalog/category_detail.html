@@ -4,30 +4,30 @@
 {% block 'extrascripts' %}
 <script>
 // $(function (){
-$(document).ready(function() {
+$(document).ready(function () {
 	$(".submitqty").click(
-	function (event){
+	function (event) {
 		form = $(this).parents("form");
 		form.submit(
 			function (event) {
 				event.preventDefault();
 				$.ajax({
-					url: $(this.).attr('action'),
+					url: $(this).attr('action'),
 					type: 'post',
 					data: $(this).serialize(),
-					success: function (data){
-						$('#status').text('Successfully updated' + data.title).show().fadeOut(5000);
+					success: function (data) {
+						$('#status').text('Successfully Updated').show().fadeOut(5000);
 
 						console.log(data);
 						},
-					error: function (xd4, statusText, errorText){
+					error: function (xd4, statusText, errorText) {
 						$('#status').text('Uh oh. Something didn\'t go right.');
-						console.log("error was" + statusText + " and error text was " + errorText);
+						console.log("error was " + statusText + " and error text was " + errorText);
 						};
-				}};
-		}};
-}};
-}};
+				});
+		});
+});
+});
 </script>
 {% endblock %}
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
 {% block 'content' %}
 
 <h3>Current Items in {{category.name}}</h3>
-<div id="status' class="alert alert-success" style="display: none;" role="alert"></div>
+<div id="status" class="alert alert-success" style="display: none;" role="alert"></div>
 {% for item in category.item_set.all %}
 	<form action="{% url 'catalog:itemupdatequantity' item.id %}" method="post">
 		{% csrf_token %}
