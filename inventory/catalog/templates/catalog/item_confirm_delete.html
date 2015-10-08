@@ -13,7 +13,7 @@
     {{ form }}
     <tr>
         <td colspan="2"><input type="submit" value="Delete Item"></td>
-	<td colspan="2"><a href="...">Cancel</a></td>
+	<td colspan="2"><a href="{% url 'catalog:categorydetail' item.category.id %}">Cancel</a></td>
     </tr>
     </table>
     </form>

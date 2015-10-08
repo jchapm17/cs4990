@@ -10,7 +10,7 @@ from .models import Item, Category
 # Create your views here.
 class AjaxableResponseMixin(object):
 	def form_invalid(self, form):
-		response = super(AjazableResponseMixn, self).form_invalid(form)
+		response = super(AjaxableResponseMixin, self).form_invalid(form)
 		if self.request.is_ajax():
 			return JsonResponse(form.errors, status=400)
 		else:
@@ -37,7 +37,7 @@ class CreateCategoryView(CreateView):
 	def get_success_url(self):
 		return reverse('catalog:categorydetail', args=(self.object.pk,))
 
-class UpdateCategoryView(UpdateView):
+class UpdateCategoryView(AjaxableResponseMixin, UpdateView):
 	model = Category
 	fields = ['parent', 'name', 'description']
 
@@ -56,12 +56,20 @@ class CreateItemView(CreateView):
 	def get_success_url(self):
 		return reverse('catalog:categorydetail', args=(self.object.category.id,))	
 
-class UpdateItemView(UpdateView):
+class UpdateItemView(AjaxableResponseMixin, UpdateView):
 	model = Item
         fields = ['name', 'quantity', 'sku', 'category']
 
 	def get_success_url(self):
         	return reverse('catalog:categorydetail', args=(self.object.category.id,))
+
+class UpdateItemQuantityView(AjaxableResponseMixin, UpdateView):
+	model = Item
+        fields = ['quantity',]
+
+	def get_success_url(self):
+        	return reverse('catalog:categorydetail', args=(self.object.category.id,))
+
 class DeleteItemView(DeleteView):
 	model = Item
 	success_url=reverse_lazy('catalog:deleteitemsuccess')
