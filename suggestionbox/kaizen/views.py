@@ -1,0 +1,76 @@
+from django.shortcuts import render, get_object_or_404
+from django.views import generic
+from django.views.generic import TemplateView, ListView, FormView, DetailView, CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse, reverse_lazy
+from .models import Idea, Profile, Category, Comment
+from .forms import CommentForm
+
+# Create your views here.
+class ChangeStatusView(UpdateView):
+	model = Idea
+	fields = ['status']
+
+	def get_success_url(self):
+		return reverse('kaizen:idealist')
+
+class IdeaListView(ListView):
+    model = Idea
+
+    def get_queryset(self):
+        return Idea.objects.order_by('-pub_date')[:5]
+
+class IdeaDetailView(DetailView):
+    model = Idea
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(IdeaDetailView,self).get_context_data()
+        context["form"] = CommentForm(initial={'idea_id': self.object.pk})
+        return context;
+
+class CreateIdeaView(CreateView):
+    model = Idea
+    fields = ('title', 'description', 'category')
+
+    def form_valid(self, form):
+        idea = form.save(commit=False)
+        profile = Profile()
+        profile.user = self.request.user
+        profile.save()
+        idea.profile = profile
+        idea.save()
+        return super(CreateIdeaView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('kaizen:idealist')
+
+class UpdateIdeaView(UpdateView):
+    model = Idea
+    fields = ('title', 'description', 'category')
+
+    def get_success_url(self):
+        return reverse('kaizen:ideadetail', args=(self.object.pk,))
+
+class DeleteIdeaView(DeleteView):
+    model = Idea
+    success_url = reverse_lazy('kaizen:deleteideasuccess')
+
+
+class AddCommentView(FormView):
+    form_class = CommentForm
+    success_url = reverse_lazy('kaizen:comment_success')
+    def get_template_names(self):
+	
+	
+	return reverse_lazy(IdeaDetailView, self.request.POST['idea_id'])
+
+    def form_valid(self, form):
+        comment = Comment()
+        comment.person = form.cleaned_data['person']
+        comment.comment_text = form.cleaned_data['comment_text']
+        comment.idea = get_object_or_404(Idea, pk=form.cleaned_data["idea_id"])
+        comment.save()
+
+        return super(AddCommentView, self).form_valid(form)
+
+class SecretView(TemplateView):
+    template_name="kaizen/secret.html"
