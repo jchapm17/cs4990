@@ -36,6 +36,9 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
 
+    class Meta:
+	verbose_name_plural='categories'
+
 class Comment(models.Model):
     person = models.CharField(max_length=200)
     comment_text = models.TextField()
