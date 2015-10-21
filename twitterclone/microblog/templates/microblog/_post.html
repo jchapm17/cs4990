@@ -1,0 +1,11 @@
+{% load thumbnail %}
+
+
+	<h2>{% if post.profile.profile_picture %}
+			{% thumbnail post.profile.profile_picture "50x50" crop="center" as im %}
+			<img src="{{ im.url }}" style="text-align: center;">
+			{% endthumbnail %}
+			{% endif %}<a href="{% url 'microblog:theirposts' post.id %}">{{ post.profile }}</h2></a></br>
+
+	<h4 class="published">Published {{ post.pub_date|date:"M d, Y" }}</h4>
+	<div class="post-body">{{ post.body }}</div>

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if post_list %}
+	
+		{% for post in profile.post_list %}
+			{% include 'microblog/_post.html' %}
+			{% if not forloop.last %}
+				<hr style="border-top: 1px solid black;">
+			{% endif %}
+		{% endfor %}
+{%else %}
+	<p>Apologies for the inconvenience. No posts to show.</p>
+
+{% endif %}
+{% endblock content %}
