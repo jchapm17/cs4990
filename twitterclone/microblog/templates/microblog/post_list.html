@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block title %}All Recent Posts{% endblock title %}
+
+{% block content %}
+<h1>Welcome to Twitterclone!
+{% if request.user.is_authenticated %}
+        <button style="float:right; font-size: 20px;"> <a href="{% url 'microblog:myfeed' %}">My Feed</a></button>
+    {% endif %}</h1>
+<hr>
+{% if post_list %}
+	
+		{% for post in post_list %}
+			{% include 'microblog/_post.html' %}
+    			{% if not forloop.last %}
+    			<hr class="postdivider">
+    			{% endif %}
+		{% endfor %}
+{%else %}
+	<p>Apologies for the inconvenience. No posts to show.</p>
+
+{% endif %}
+{% endblock content %}
+
+

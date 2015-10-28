@@ -1,11 +1,15 @@
 {% load thumbnail %}
-
-
-	<h2>{% if post.profile.profile_picture %}
-			{% thumbnail post.profile.profile_picture "50x50" crop="center" as im %}
-			<img src="{{ im.url }}" style="text-align: center;">
-			{% endthumbnail %}
-			{% endif %}<a href="{% url 'microblog:theirposts' post.id %}">{{ post.profile }}</h2></a></br>
-
-	<h4 class="published">Published {{ post.pub_date|date:"M d, Y" }}</h4>
-	<div class="post-body">{{ post.body }}</div>
+<div class="postdetail" style="background:rgba(102,204,255,0.3)">
+    {% if post.profile.profile_picture %} 
+        {% thumbnail post.profile.profile_picture "80x80" crop="center" as im %}
+        <img src="{{ im.url }}" width="80" height="80" class="profilepic">
+        {% endthumbnail %}
+    {% else %}
+        <img src="http://www.thehendonmob.com/media/Image/authors/unknown_poker_player_300.jpg" width="80" height="80" class="profilepic">
+    {% endif %}
+    
+    <a href="{% url 'microblog:profiledetail' post.profile.user.id %}">@{{ post.profile.user.username }}</a> | <span class="pubdate">Published {{ post.pub_date|date:"d M, Y" }} at {{ post.pub_date|date:"g:i a"}}</span>
+    <div class="well postbody">
+        {{ post.body_with_links|safe }}
+    </div>
+</div>
