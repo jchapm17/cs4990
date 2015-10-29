@@ -4,10 +4,10 @@
 
 {% block content %}
 <h1>@{{ profile.user.username }}'s Profile
-</h1>
+
 {% if request.user.is_authenticated %}
-        <button style="float:right; font-size: 20px;"> <a href="{% url 'microblog:myfeed' %}">My Feed</a></button>
-    {% endif %}</h1>
+        <button class="btn btn-primary" style="float:right;" > <a style="color:white;" href="{% url 'microblog:myfeed' %}">My Feed</a></button></h1>
+    {% endif %}
 
 <div class="profiledetail">
     {% if profile.profile_picture %} 
@@ -17,15 +17,18 @@
     {% else %}
         <img src="http://www.thehendonmob.com/media/Image/authors/unknown_poker_player_300.jpg" width="160" height="160" class="profilepic">
     {% endif %}
-    {% if request.user.is_authenticated %}
-</br>
-    <div class="btn followbutton">
-        <form action="{% url 'microblog:follow' profile.id %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Follow @{{ profile.user.username }}</button>
-        </form>
-    </div>
-    {% endif %}
+{% if request.user.is_authenticated %}
+		{% ifequal request.user profile.user %}	
+		<br><button class="btn btn-primary"><a style="color:white;" href="{% url 'microblog:updateprofile' profile.id %}">Edit Profile</a></button>	
+		{% else %}
+				{% if folow_profile not in profile.following.all %}
+				<form action="{% url 'microblog:follow' profile.id %}" method="post">
+				{%csrf_token %}
+				<button class="btn btn-primary">Follow {{ profile }}</button>
+			</form>
+			{% endif %}
+		{% endifequal %}
+	{% endif %}
 
 
     <div class="bio">
