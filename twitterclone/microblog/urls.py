@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^profile/(?P<pk>\d+)/follow$', login_required(views.FollowFormView.as_view()), name="follow"),
     url(r'^profile/(?P<pk>\d+)/follow/success$', login_required(views.FollowSuccessView.as_view()), name="followsuccess"),
     url(r'^newpost/$', views.CreatePostView.as_view(), name="addpost"),
-    url(r'^profile/(?P<pk>\d+)create/$', views.CreateProfileView.as_view(), name="createprofile"),
+    url(r'^profile/(?P<pk>\d+)/create/$', views.CreateProfileView.as_view(), name="createprofile"),
     url(r'^profile/(?P<pk>\d+)/update/$', views.UpdateProfileView.as_view(), name="updateprofile"),
 ]

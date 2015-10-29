@@ -60,6 +60,7 @@
                     <a href="/accounts/logout/">Log Out</a>
 		{% if request.user.profile_set.all %}
 		<li><a href="{% url 'microblog:updateprofile' request.user.profile_set.all.0.id %}">Edit My Profile</a></li>
+		<li><a href="{% url 'microblog:myfeed' %}">My Feed</a></li>
 		{% endif %}
                 {% else %}
                     <a href="/accounts/login/">Log In</a>
@@ -74,7 +75,8 @@
       </div>
     </nav>
 
-    <div class="container" style="margin-top: 100px;">
+<a style="color:white" href="{% url 'microblog:myfeed' %}">My Feed</a></li>
+<div class="container" style="margin-top: 100px;">
 
       <div class="starter-template">
             {% block content %}{% endblock content %}

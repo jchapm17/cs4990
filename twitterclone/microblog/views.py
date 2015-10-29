@@ -33,7 +33,7 @@ class FollowFormView(SingleObjectMixin, View):
 
     def post(self, request, *args, **kwargs):
 	try:
-		my_profile = request.user.profile_setall()[0]
+		my_profile = request.user.profile_set.all()[0]
         except Profile.DoesNotExist:
 		my_proile = Profile(bio = '', user = request.user)
         	my_profile.save()
