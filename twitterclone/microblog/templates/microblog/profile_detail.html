@@ -18,8 +18,7 @@
         <img src="http://www.thehendonmob.com/media/Image/authors/unknown_poker_player_300.jpg" width="160" height="160" class="profilepic">
     {% endif %}
 {% if request.user.is_authenticated %}
-		{% ifequal request.user profile.user %}	
-		<br><button class="btn btn-primary"><a style="color:white;" href="{% url 'microblog:updateprofile' profile.id %}">Edit Profile</a></button>	
+		{% ifequal request.user profile.user %}		
 		{% else %}
 				{% if folow_profile not in profile.following.all %}
 				<form action="{% url 'microblog:follow' profile.id %}" method="post">

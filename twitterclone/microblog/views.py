@@ -57,7 +57,7 @@ class CreatePostView(CreateView):
 
     def form_valid(self, form):
         u = form.save(commit=False)
-        u.profile = Profile.objects.filter(user=self.request.user)[0]
+        u.profile, created = Profile.objects.get_or_create(user=self.request.user)
         u.save()
         return super(CreatePostView, self).form_valid(form)
 
