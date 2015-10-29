@@ -4,15 +4,15 @@
 
 {% block content %}
 <h1>@{{ profile.user.username }}'s Profile
-{% if request.user.is_authenticated %}
-    <form action="{% url 'microblog:addpost' %}" method="post">
+{% ifequal request.user profile.user %}    
+<form action="{% url 'microblog:addpost' %}" method="post">
       {% csrf_token %}
       <table class="table">
       {{ form }}
       </table>
       <button style="float:right; margin-top:-64px;" type="submit" class="btn btn-primary">Add Post</button>
     </form>
-    {% endif %}
+{% endifequal %}
 </h1>
 
 <div class="profiledetail">
