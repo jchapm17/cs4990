@@ -63,6 +63,7 @@
                 {% endif %}    
             </li>
 	    <li> <a href="/accounts/register/">Create Account</a>
+	     <li> <a href="{ url 'microblog:updateprofile' request.user.profile_set.all.0.id %}">Edit My Profile</a></li>
             <li><a href="/admin/">Admin</a></li>
             <li><a href="mailto:d00266036@dmail.dixie.edu">Contact</a></li>
           </ul>
