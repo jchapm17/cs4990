@@ -33,3 +33,4 @@ class Punch(models.Model):
 
     class Meta:
         verbose_name_plural = "punches"
+	ordering = ('-time_in',)

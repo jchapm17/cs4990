@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
-from django.views.generic import FormView
+from django.views.generic import FormView, ListView
 from django.utils import timezone
 from .forms import PunchInForm, PunchOutForm
 from django.http import HttpResponseRedirect
@@ -52,3 +52,6 @@ class ClockInOutView(FormView):
             entry.time_out = timezone.now()
             entry.save()
             return HttpResponseRedirect(reverse('timeclock:ko'))
+
+class PunchListView(ListView):
+	model = Punch

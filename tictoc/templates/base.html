@@ -67,9 +67,11 @@
                     <a href="{% url 'registration_register' %}">Create Account</a>
                 {% endif %}    
             </li>
-            <li><a href="/admin/">Admin</a></li>
-            <li><a href="mailto:d00266036@dmail.dixie.edu">Contact</a></li>
-          </ul>
+	    <li><a href="{% url 'timeclock:punches' %}">Punches</a></li>  
+	        
+	    <li><a href="/admin/">Admin</a></li>
+            <li><a href="mailto:d00266036@dmail.dixie.edu">Contact</a></li>     
+	</ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
