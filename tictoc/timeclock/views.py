@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.core.urlresolvers import reverse
-from django.views.generic import FormView, ListView
+from django.core.urlresolvers import reverse, reverse_lazy
+from django.views.generic import FormView, ListView, UpdateView
 from django.utils import timezone
 from .forms import PunchInForm, PunchOutForm
 from django.http import HttpResponseRedirect
@@ -80,7 +80,9 @@ class PunchListView(ListView):
 			queryset = queryset.filter(time_in__gte = self.request.GET.get("time_in"))
 
 		if "time_out" in self.request.GET and self.request.GET["time_out"] != "":
-			queryset = queryset.filter(time_out__lte = self.request.GET.get("time_out"))
+			d = datetime.datetime.strptime(self.request.GET.get("time_out"), "%Y-%m-%d")
+			d = d + datetime.timedelta(days = 1)
+			queryset = queryset.filter(time_in__lte = d)
 
 		if "note" in self.request.GET and self.request.GET["note"] != "":
 			queryset = queryset.filter(note__icontains = self.request.GET.get("note"))

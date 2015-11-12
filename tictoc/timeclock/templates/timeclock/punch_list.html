@@ -24,7 +24,8 @@
 		<select name="user">
 		<option value="">All Users</option>
 		{% for user in users %}
-		<option value="{{ user.id }}">{% if user.get_full_name %}{{ user.get_full_name }}{% else %} {{ user.username }}{% endif %}</option>
+		<option value="{{ user.id }}">{% if user.get_full_name %}{{ user.get_full_name }}{% else %} {{ user.username }}
+		{% endif %}</option>
 		{% endfor %}
 		</select>
 	</td>
@@ -64,10 +65,12 @@
 </form>
 
 
-
-<table class="table">
+<table class="table" style="margin-top:50px;">
 <thead>
 <tr>
+{% if request.user.is_superuser %}
+	<th>Employee</th>
+{% endif %}
 	<th>Project</th>
 	<th>Clock In Time</th>
 	<th>Clock Out Time</th>
@@ -78,6 +81,9 @@
 <tbody>
 {% for punch in punch_list %}
 <tr>
+{% if request.user.is_superuser %}
+	<td>{{ punch.user }}</td>
+{% endif %}
 	<td>{{ punch.project.title }}</td>
 	<td>{{ punch.time_in }}</td>
 	<td>{{ punch.time_out }}</td>
@@ -86,7 +92,7 @@
 {% empty %}
 <tr>
 	<td colspan="5">
-		Sorry, no time card entries match your search. Either get to work or broaden your search
+		Sorry, no time card entries match your search. Either get to work or broaden your search.
 	</td>
 </tr>
 {% endfor %}
