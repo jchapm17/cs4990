@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^', include('crm.urls', namespace="crm")),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

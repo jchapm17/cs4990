@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
             name='Opportunity',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('value', models.FloatField(help_text=b'How much this opportunity is worth to the organization.')),
+                ('value', models.FloatField(help_text=b'How much this opportunity is worth to the organization')),
                 ('create_date', models.DateTimeField(auto_now_add=True)),
                 ('company', models.ForeignKey(blank=True, to='crm.Company', null=True)),
                 ('contact', models.ForeignKey(to='crm.Contact')),
@@ -108,9 +108,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=200)),
-                ('order', models.IntegerField(help_text=b'The order this is displayed on the screen.')),
+                ('order', models.IntegerField(help_text=b'The order this is displayed on the screen')),
                 ('description', models.TextField(null=True, blank=True)),
-                ('value', models.IntegerField(help_text=b'On a scale of 0 to 100 of the stage of the pipeline.')),
+                ('value', models.IntegerField(help_text=b'On a scale of 0 to 100 of the stage of the pipeline')),
             ],
         ),
         migrations.AddField(
