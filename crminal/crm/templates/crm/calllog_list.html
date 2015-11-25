@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Call Logs{% endblock %}
+{% block content %}
+<h1>List of Call Logs </h1>
+  <a class="btn btn-success" style="background:#009688; margin-top:-45px; float:right;" href="{% url 'crm:calllog_create' %}">Create a New Call Log</a>
+    {% if calllog_list %}
+    {% for calllog in calllog_list %}
+      <a class="list-group-item" href="{% url 'crm:calllog_detail' calllog.id %}">{{ calllog }}</a>
+    {% endfor %}
+    {% else %}
+	<p>No calls have been logged.</p>
+    {% endif %}
+
+{% endblock %}

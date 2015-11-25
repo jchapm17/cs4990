@@ -8,42 +8,43 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{% block title %}Business CRM{% endblock %}</title>
+    <title>{% block title %}CRMinal - A Minimal CRM{% endblock %}</title>
 
-    <!-- Bootstrap core CSS -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  <link rel="stylesheet" href="/media/style.css">
-  <style>
-  .errorlist {
-     color:red;
-     list-style-type: none;
 
-  }
+    <!-- Custom Css -->
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="/media/static/css/styles.css">
 
-  </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  {% block extrascripts %}{% endblock %}
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Allura|Vollkorn' rel='stylesheet' type='text/css'>
+
+    <!-- Calaner -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.min.css" rel="stylesheet" type="text/css">
+    <link media="print" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.print.css" rel="stylesheet" type="text/css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/roboto.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css" rel="stylesheet" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/ripples.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/js/material.min.js"></script>
+    <script>
+        $.material.init();
+    </script>
+
+    <!-- Extra Script -->
+    {% block extrascripts %}{% endblock %}
   </head>
 
   <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -52,49 +53,60 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Business CRM</a>
+          <a class="navbar-brand" href="#">Buisness CRM</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li>
-                {% if request.user.is_authenticated %}
-                    <a href="{% url 'auth_logout' %}">Log Out</a>
-                {% else %}
-                    <a href="{% url 'auth_login' %}">Log In</a>
-                    </li>
-                    <li>
-                    <a href="{% url 'registration_register' %}">Create Account</a>
-                {% endif %}    
-            </li>
-	        
-	    <li><a href="/admin/">Admin</a></li>
-            <li><a href="mailto:d00266036@dmail.dixie.edu">Contact</a></li>     
-	</ul>
+            <li class="active"><a href="dashboard">Dash Board</a></li>
+            <li><a href="{% url 'crm:stage_list' %}">Stages</a></li>
+            <li><a href="{% url 'crm:company_list' %}">Companies</a></li>
+            <li><a href="{% url 'crm:contact_list' %}">Contacts</a></li>
+            <li><a href="{% url 'crm:calllog_list' %}">Call Logs</a></li>
+            <li><a href="{% url 'crm:opportunity_list' %}">Opportunities</a></li>
+            <li><a href="{% url 'crm:reminder_list' %}">Reminders</a></li>
+            <li><a href="{% url 'crm:campaign_list' %}">Campaigns</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          {% if request.user.is_authenticated %}
+            <li><a href="{% url 'auth_logout' %}"> Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'registration_register' %}"> Create Account</a></li>
+            <li><a href="{% url 'auth_login' %}"> Log In</a></li>
+          {% endif %}
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container" style="margin-top: 100px;">
-{% block content %}
-
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    <div class="container content">
+      {% if messages %}
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="alert alert-success">
+              {% for message in messages %}
+              <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+              {% endfor %}
+          </div>
+        </div>
       </div>
-{% endblock %}
+      {% endif %}
+    {% block content %}
 
+    {% endblock %}
+    </div><!-- End of Container -->
 
-
-    </div><!-- /.container -->
-
+    <footer>
+      <div class="container">
+        <hr>
+        <p style="text-align: center">
+            Copyright &copy; 2015 CRMinal<br>
+        <a href="http://djangopony.com/" class="ponybadge" title="Magic! Ponies! Django! Whee!"><img src="http://media.djangopony.com/img/small/badge.png" width="210" height="65" alt="pony powered"></a>
+        </p>
+      </div>
+    <footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
-

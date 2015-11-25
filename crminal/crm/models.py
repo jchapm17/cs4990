@@ -102,8 +102,8 @@ class CallLog(models.Model):
 class OpportunityStage(models.Model):
     opportunity = models.ForeignKey(Opportunity)
     stage = models.ForeignKey(Stage)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    time_stamp = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)
 
     def __unicode__(self):
-        return self.opportunity + " moved to " + self.stage
+        return "%s moved to %s" % (self.opportunity, self.stage)
