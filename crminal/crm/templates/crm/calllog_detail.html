@@ -22,9 +22,9 @@
         <td>{{ calllog.note }}</td>
         <td>{{ calllog.user }}</td>
         <td><a href="{% url 'crm:calllog_update' calllog.id %}"><span class="glyphicon glyphicon-edit"></span></a></td>
-        <td><a href="{% url 'crm:calllog_delete' calllog.id %}"><span class="glyphicon glyphicon-remove"></a></td>
+        <td><a href="{% url 'crm:calllog_delete' calllog.id %}"><span class="glyphicon glyphicon-remove" style="color:red;"></a></td>
       </tr>
     </tbody>
   </table>
-
+<a class="btn btn-success" style="background:#009688; float:right;" href="{% url 'crm:calllog_list' %}">Return to Call Log List</a>
 {% endblock %}

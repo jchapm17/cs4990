@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Reminders{% endblock %}
+
+{% block content %}
+<h1>Reminders</h1>
+  <a class="btn btn-success" style="background:#009688; margin-top:-45px; float:right;" href="{% url 'crm:reminder_create' %}">Create a New Reminder</a>
+
+  <div class="list-group" style="margin-top:20px;">
+    {% if reminder_list %}
+    {% for reminder in reminder_list %}
+    <a class="list-group-item" href="{% url 'crm:reminder_detail' reminder.id %}">{{ reminder}}<span style="text-align:right; float:right;">Completed: {{ reminder.completed }}</span></a>
+    {% endfor %}
+    {% else %}
+    <p>No reminders to list</p>
+    {% endif %}
+  </div>
+
+{% endblock %}

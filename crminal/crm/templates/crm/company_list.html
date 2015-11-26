@@ -1,0 +1,19 @@
+i{% extends 'base.html' %}
+
+{% block title %}Companies{% endblock %}
+
+{% block content %}
+<h1>Companies</h1>
+  <a class="btn btn-success" style="background:#009688; margin-top:-45px; float:right;" href="{% url 'crm:company_create' %}">Create a New Company</a>
+
+  <div class="list-group">
+    {% if company_list %}
+    {% for company in company_list %}
+      <a class="list-group-item" href="{% url 'crm:company_detail' company.id %}">{{ company.name }}</a>
+    {% endfor %}
+{% else %}
+        <p>No companies to list.</p>
+    {% endif %}
+  </div>
+
+{% endblock %}
