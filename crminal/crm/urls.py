@@ -1,4 +1,3 @@
-
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import url, include
 from viewsets import ModelViewSet
@@ -8,6 +7,7 @@ from .models import Stage, Company, Contact, Campaign, Opportunity, Reminder, Re
 
 urlpatterns = [
     url(r'^$', login_required(views.Dashboard.as_view()), name="dashboard"),
+    url(r'^search/$', login_required(views.search), name="search"),
 
     url(r'^calllogs/$', login_required(views.CallLogList.as_view()), name="calllog_list"),
     url(r'^calllogs/(?P<pk>\d+)/$', login_required(views.CallLogDetail.as_view()), name="calllog_detail"),
@@ -27,13 +27,13 @@ urlpatterns = [
     url(r'^companies/(?P<pk>\d+)/update/$', login_required(views.UpdateCompany.as_view()), name="company_update"),
     url(r'^companies/(?P<pk>\d+)/delete/$', login_required(views.DeleteCompany.as_view()), name="company_delete"),
 
-    url(r'^opportunties/$', login_required(views.OpportunityList.as_view()), name='opportunity_list'),
-    url(r'^opportunties/(?P<pk>\d+)/$', login_required(views.OpportunityDetail.as_view()), name="opportunity_detail"),
-    url(r'^opportunties/create/$', login_required(views.CreateOpportunity.as_view()), name='opportunity_create'),
-    url(r'^opportunties/(?P<pk>\d+)/update/$', login_required(views.UpdateOpportunity.as_view()), name="opportunity_update"),
-    url(r'^opportunties/(?P<pk>\d+)/delete/$', login_required(views.DeleteOpportunity.as_view()), name="opportunity_delete"),
+    url(r'^opportunities/$', login_required(views.OpportunityList.as_view()), name='opportunity_list'),
+    url(r'^opportunities/(?P<pk>\d+)/$', login_required(views.OpportunityDetail.as_view()), name="opportunity_detail"),
+    url(r'^opportunities/create/$', login_required(views.CreateOpportunity.as_view()), name='opportunity_create'),
+    url(r'^opportunities/(?P<pk>\d+)/update/$', login_required(views.UpdateOpportunity.as_view()), name="opportunity_update"),
+    url(r'^opportunities/(?P<pk>\d+)/delete/$', login_required(views.DeleteOpportunity.as_view()), name="opportunity_delete"),
 
-    url(r'^opportuntystages/(?P<pk>\d+)/$', login_required(views.OpportunityStageDetail.as_view()), name="opportunitystage_detail"),
+    url(r'^opportunitystages/(?P<pk>\d+)/$', login_required(views.OpportunityStageDetail.as_view()), name="opportunitystage_detail"),
 
     url(r'^reminders/$', login_required(views.ReminderList.as_view()), name='reminder_list'),
     url(r'^reminders/(?P<pk>\d+)/$', login_required(views.ReminderDetail.as_view()), name="reminder_detail"),
