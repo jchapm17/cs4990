@@ -1,18 +1,29 @@
 {% extends 'base.html' %}
 {% block title %}Contacts{% endblock %}
 {% block content %}
-<h1>Contacts</h1>
-  <a class="btn btn-success" style="background:#009688; margin-top:-45px; float:right;" href="{% url 'crm:contact_create' %}">Add a New Contact</a>
-<div class="list-group">
+    <div class="row">
+	<div class="col-lg-6">
+	    <div class="panel panel-primary">
+		<div class="panel-heading" style="background:#03a9f4;">	
+		    Contact List
+		</div>
     {% if contact_list %}
+<div class="panel-body">
+<table class="table">
+<tbody>
     {% for contact in contact_list %}
-      <a class="list-group-item" href="{% url 'crm:contact_detail' contact.id %}">{{ contact }}</a>
+      <tr><td><a href="{% url 'crm:contact_detail' contact.id %}">{{ contact }}</a></td></tr>
     {% endfor %}
     {% else %}
         <p>No contacts have been made.</p>
     {% endif %}
-</div>
-{% endblock %}
-~
+</tbody>
+</table>
+<div class="pull-right">
+			<a href="{% url 'crm:contact_create' %}"class="btn btn-primary btn-fab btn-raised mdi-content-add-box text-right"></a>
+		    </div>
+		</div>
+	    </div>
+{% endblock content %}
 ~
 

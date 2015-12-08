@@ -47,7 +47,7 @@
                     </tr>
                 </table>
                     <div class="pull-right">
-                    <a href="{% url 'crm:reminder_create' %}" class="btn btn-primary btn-fab btn-raised mdi-content-create text-right" title="Create New Reminder"></a>
+                    <a href="{% url 'crm:contact_update' opportunity.contact.id %}" class="btn btn-primary btn-fab btn-raised mdi-content-create text-right"></a>
                     </div>
                 </div>
             </div>
@@ -101,9 +101,9 @@ function initMap() {
                 <tr>   
                     <th>Date</th>
                     <th>Note</th>
-                    <th>Who</th>
+                    <th>User</th>
                 </tr>
-		{% for calllog in calllog_list %}
+		{% for calllog in opportunity.calllog_list %}
                 <tr>   
                     <td>{{ calllog.date|date:"j M Y" }}</td>
                     <td>{{ calllog.note }}</td>
@@ -141,6 +141,4 @@ function initMap() {
             </div>
         </div>
     </div>
-
-<a class="btn btn-success" style="background:#009688; float:right;" href="{% url 'crm:opportunity_list' %}">Return to Opportunity List</a>
 {% endblock %}

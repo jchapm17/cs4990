@@ -1,19 +1,32 @@
-i{% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Companies{% endblock %}
 
 {% block content %}
-<h1>Companies</h1>
-  <a class="btn btn-success" style="background:#009688; margin-top:-45px; float:right;" href="{% url 'crm:company_create' %}">Add a New Company</a>
-
-  <div class="list-group">
+    <div class="row">
+	<div class="col-lg-6">
+	    <div class="panel panel-primary">
+		<div class="panel-heading" style="background:#03a9f4;">	
+		   Company List
+		</div>
+	    	<div class="panel-body">
+                    <table class="table">
     {% if company_list %}
+<table>
+<tbody>
     {% for company in company_list %}
-      <a class="list-group-item" href="{% url 'crm:company_detail' company.id %}">{{ company.name }}</a>
+      <tr><td><a href="{% url 'crm:company_detail' company.id %}">{{ company.name }}</a><td></tr>
     {% endfor %}
 {% else %}
         <p>No companies to list.</p>
     {% endif %}
-  </div>
-
-{% endblock %}
+</tbody>
+		    </table>
+		    <div class="pull-right">
+			<a href="{% url 'crm:company_create' %}" class="btn btn-primary btn-fab btn-raised mdi-content-add-box text-right"></a>
+		    </div>
+		</div>
+	    </div>
+	</div>
+    </div>
+{% endblock content %}
