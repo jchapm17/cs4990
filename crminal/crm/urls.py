@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import url, include
-from viewsets import ModelViewSet
+#from viewsets import ModelViewSet
 from . import views
 from .views import *
 from .models import Stage, Company, Contact, Campaign, Opportunity, Reminder, Report, CallLog, OpportunityStage
@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^opportunities/create/$', login_required(views.CreateOpportunity.as_view()), name='opportunity_create'),
     url(r'^opportunities/(?P<pk>\d+)/update/$', login_required(views.UpdateOpportunity.as_view()), name="opportunity_update"),
     url(r'^opportunities/(?P<pk>\d+)/delete/$', login_required(views.DeleteOpportunity.as_view()), name="opportunity_delete"),
+#    url(r'^opportunity/$', login_required(views.OpportunitList.as_view()), name='opportunity'),
 
     url(r'^opportunitystages/(?P<pk>\d+)/$', login_required(views.OpportunityStageDetail.as_view()), name="opportunitystage_detail"),
 

@@ -8,7 +8,7 @@ from django.db.models import Count
 import datetime
 from itertools import chain
 
-from viewsets import ModelViewSet
+#from viewsets import ModelViewSet
 from .models import Stage, Company, Contact, Campaign, Opportunity, Reminder, Report, CallLog, OpportunityStage
 
 def search(request):

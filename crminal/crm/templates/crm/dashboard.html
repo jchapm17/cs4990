@@ -48,6 +48,9 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     Upcoming Reminders
+                        <span class="text-right pull-right">
+                            <a href="{% url 'crm:reminder_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px;" title="List all Opportunities"></a>
+                        </span>
                 </div>
                 <div class="panel-body">
                 <table class="table">
@@ -58,7 +61,7 @@
                     </tr>
                     {% for reminder in reminders %}
                     <tr>
-                        <td><a href="#">{{ reminder.opportunity }}</a></td>
+                        <td><a href="{% url 'crm:reminder_detail' reminder.opportunity.id %}">{{ reminder.opportunity }}</a></td>
                         <td>{{ reminder.note }}</td>
                         <td>{{ reminder.date|date:"j M Y" }}</td>
                     </tr>
@@ -74,6 +77,9 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     Newest Opportunities
+                        <span class="text-right pull-right">
+                            <a href="{% url 'crm:opportunity_list' %}" class="btn btn-info btn-sm mdi-action-list" style="margin-top: -7px;" title="List all Opportunities"></a>
+                        </span>
                 </div>
                 <div class="panel-body">
                 <table class="table">
@@ -104,6 +110,9 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     Opportunities By Stage
+			<span class="text-right pull-right">
+                            <a href="{% url 'crm:opportunity_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px; background: #03a9f4;" title="List all Opportunities"></a>
+                        </span>
                 </div>
                 <div class="panel-body">
                     <div id="piechart" style="width:500px; height: 400px; color:white;"></div>
@@ -114,8 +123,11 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     Top Producers
-                </div>
-                <div class="panel-body">
+		<span class="text-right pull-right">
+ 			<a href="{% url 'crm:opportunity_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px;" title="List all Opportunities"></a>
+                </span>
+		</div>
+		<div class="panel-body">
                     <table class="table">
                     <tr>
                         <th>Name</th>
