@@ -7,7 +7,8 @@
 		<h1>List All Opportunities</h1>
 	</div>
 	    	<div class="panel-body">
-                    <table class="table">
+                    {% if opportunity_list %}
+		    <table class="table">
                         <thead>
                             <tr>
                                 <th>Opportunity</th>
@@ -26,6 +27,10 @@
 				</tr>
 			    {% endfor %}
 			</tbody>
+			{% else %}
+			   <p>No opportunities to list.</p>
+			    {% endif %}
+
 		    </table>
 		    <div class="pull-right">
 			 <a class="btn btn-primary btn-fab btn-raised mdi-content-add-box text-right" href="{% url 'crm:opportunity_create' %}"></a>
