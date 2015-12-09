@@ -32,6 +32,8 @@ def search(request):
                 opp_results = opp_results + list(opp_firstname) + list(opp_lastname) + list(opp_stage)
                 company_results = company_results + list(company)
 
+		opp_stage = Opportunity.objects.filter(opportunity_stage__icontains = search_word)
+
             return render_to_response('crm/search_results.html', {'search':search_words, 'contacts': contact_results, 'opps': opp_results, 'companies': company_results}, context_instance=RequestContext(request))
 
     return render_to_response('crm/search_results.html', context_instance=RequestContext(request))
@@ -51,6 +53,10 @@ class Dashboard(ListView):
 	context['opportunity_list'] = Opportunity.objects.all().order_by('-create_date')[:5]
 
         return context
+
+class Reports(ListView):
+	model = Report
+	template_name = "reports/dashboard.html"
 
 #class StageViewSet(ModelViewSet):
 #    model = Stage
