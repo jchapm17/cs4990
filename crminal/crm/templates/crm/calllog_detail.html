@@ -3,28 +3,30 @@
 {% block title %}Call Log {{ calllog.name }}{% endblock %}
 
 {% block content %}
+        <div class="col-lg-6">
+            <div style="color:white; margin:13px;" class="pull-right"><a style="color:white;" href="{% url 'crm:calllog_update' calllog.id %}">Edit </a>|<a style="color:white;" href="{% url 'crm:calllog_delete' calllog.id %}"> Delete</a></div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"  style="background:#03a9f4;">
+                    {{calllog}}
+                </div>
+                <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>Date</td>
+                        <td>{{ calllog.date }}</td>
+                    </tr>
+		    <tr>
+                        <td>Note</td>
+                        <td>{{ calllog.note }}</td>
+                    </tr>
+		    <tr>
+                        <td>User</td>
+                        <td>{{ calllog.user }}</td>
+                    </tr>
 
-  <table class="table table-striped">
-    <thead>
-      <tr class="success">
-        <th>Opportunity</th>
-        <th>Date</th>
-        <th>Note</th>
-        <th>User</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{ calllog.opportunity }}</td>
-        <td>{{ calllog.date }}</td>
-        <td>{{ calllog.note }}</td>
-        <td>{{ calllog.user }}</td>
-        <td><a href="{% url 'crm:calllog_update' calllog.id %}"><span class="glyphicon glyphicon-edit"></span></a></td>
-        <td><a href="{% url 'crm:calllog_delete' calllog.id %}"><span class="glyphicon glyphicon-remove" style="color:red;"></a></td>
-      </tr>
-    </tbody>
-  </table>
+                </table>
 <a class="btn btn-success" style="background:#009688; float:right;" href="{% url 'crm:calllog_list' %}">Return to Call Log List</a>
+</div>
+</div>
+</div>
 {% endblock %}

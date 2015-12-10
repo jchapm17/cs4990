@@ -3,24 +3,25 @@
 {% block title %}Campaign {{ campaign.name }}{% endblock %}
 
 {% block content %}
+       <div class="col-lg-6">
+                      <div style="color:white; margin:13px;" class="pull-right"><a style="color:white;" href="{% url 'crm:campaign_update' campaign.id %}">Edit </a>|<a style="color:white;" href="{% url 'crm:campaign_delete' campaign.id %}"> Delete</a></div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"  style="background:#03a9f4;">
+                    {{campaign}}
+                </div>
 
-  <table class="table table-striped">
-    <thead>
-      <tr class="success">
-        <th>Name</th>
-        <th>Description</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{ campaign.name }}</td>
-        <td>{{ campaign.description }}</td>
-        <td><a  href="{% url 'crm:campaign_update' campaign.id %}"><span class="glyphicon glyphicon-edit"></a></td>
-        <td><a  href="{% url 'crm:campaign_delete' campaign.id %}"><span style="color:red;" class="glyphicon glyphicon-remove"></a></td>
-      </tr>
-    </tbody>
-  </table>
+                <div class="panel-body">
+<table class="table">
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ campaign.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{ campaign.description }}</td>
+                    </tr>
+</table>
 <a class="btn btn-success" style="background:#009688; float:right;" href="{% url 'crm:campaign_list' %}">Return to Campaign List</a>
+</div>
+</div>
 {% endblock %}

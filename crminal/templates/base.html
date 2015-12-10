@@ -76,8 +76,8 @@
           {% endif %}
           </ul>
 	  <div class="pull-right">
-             <form class="navbar-form navbar-right" method="GET" action="/search/">
-               <input type="text" class="form-control col-lg-8" placeholder="Search Term" name="q">
+             <form class="navbar-form navbar-right" method="GET" action="{% url 'crm:search' %}">
+               <input type="text" class="form-control col-lg-8" placeholder="search">
            </form>
                 </div>
             </form>

@@ -7,8 +7,7 @@
         <div class="col-lg-12">
             <div class="jumbotron">
                 <h1>Opportunity {{ opportunity.name }} {{ opportunity.stage }}</a>
-                <p class="pull-right"><a href="{% url 'crm:opportunity_update' opportunity.id %}"><span class="glyphicon glyphicon-edit"></a>
-		<a href="{% url 'crm:opportunity_delete' opportunity.id %}"><span style="color:red;" class="glyphicon glyphicon-remove"></a></p>
+                <div style="display: inline-block; margin-top: 32px; font-size: 24px" class="pull-right"><a href="{% url 'crm:opportunity_update' opportunity.id %}">Edit </a>|<a href="{% url 'crm:opportunity_delete' opportunity.id %}"> Delete</a></div></h1>
              </div>
         </div>
     </div>
@@ -18,7 +17,7 @@
                 <div class="panel-heading">
                     Contact Information
 <span class="text-right pull-right">
-                            <a href="{% url 'crm:calllog_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px;"></a>
+                            <a href="{% url 'crm:contact_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px;" title="List All Contacts"></a>
 
                 </div>
                 <div class="panel-body">
@@ -50,7 +49,7 @@
                     </tr>
                 </table>
                     <div class="pull-right">
-                    <a href="{% url 'crm:company_update' opportunity.company.id %}" class="btn btn-primary btn-fab btn-raised mdi-content-create text-right"></a>
+                    <a href="{% url 'crm:company_update' opportunity.company.id %}" class="btn btn-primary btn-fab btn-raised mdi-content-create text-right" title="Edit Company Info"></a>
                     </div>
                 </div>
             </div>
@@ -96,7 +95,7 @@ function initMap() {
                 <div class="panel-heading">
                   Call Logs for {{ opportunity }}
                  <span class="text-right pull-right">
-                            <a href="{% url 'crm:calllog_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px; background:#03a9f4;"></a>
+                            <a href="{% url 'crm:calllog_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px; background:#03a9f4;" title="List All Call Logs"></a>
                         </span>
 		</div>
                 <div class="panel-body">
