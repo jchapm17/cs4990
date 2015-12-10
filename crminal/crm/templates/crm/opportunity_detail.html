@@ -17,6 +17,9 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     Contact Information
+<span class="text-right pull-right">
+                            <a href="{% url 'crm:calllog_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px;"></a>
+
                 </div>
                 <div class="panel-body">
                 <table class="table">
@@ -87,58 +90,57 @@ function initMap() {
         </div>
     </div>
 
-<div class="row">
+    <div class="row">
         <div class="col-lg-6">
-            <div class="panel panel-primary">
+            <div class="panel panel-info">
                 <div class="panel-heading">
-                    Call Log for ACME, Inc.
-                        <span class="text-right pull-right">
-                            <a href="{% url 'crm:calllog_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px;"></a>
+                  Call Logs for {{ opportunity }}
+                 <span class="text-right pull-right">
+                            <a href="{% url 'crm:calllog_list' %}" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px; background:#03a9f4;"></a>
                         </span>
-                </div>
+		</div>
                 <div class="panel-body">
-                <table class="table">
-                <tr>   
-                    <th>Date</th>
-                    <th>Note</th>
-                    <th>User</th>
-                </tr>
-                <tr>
-		{% for calllog in calllog_list %}   
-                    <td>{{ calllog.date|date:"j M Y" }}</td>
-                    <td>{{ calllog.note }}</td>
-                    <td>{{ calllog.user }}</td>
-                </tr>
-		{% endfor %}
-                </table>
+                  <table class="table">
+                  <tr>
+                      <th>Date</th>
+                      <th>Note</th>
+                      <th>User</th>
+                  </tr>
+                  {% if opportunity.calllog_set %}
+                    {% for calllog in opportunity.calllog_set.all %}
+                    <tr>
+                        <td style="min-width:120px;">{{ calllog.date|date:"j M Y" }}</td>
+                        <td>{{ calllog.note }}</td>
+                        <td>{{ calllog.user }}</td>
+                    </tr>
+                    {% endfor %}
+                  {% endif %}
+                  </table>
                 </div>
             </div>
         </div>
-
         <div class="col-lg-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Stage History
-                        <span class="text-right pull-right">
-                            <a href="#" class="btn btn-primary btn-sm mdi-action-list" style="margin-top: -7px;" title="List all Opportunities"></a>
-                        </span>
-                </div>
+                  Stage History
+		</div>
                 <div class="panel-body">
                     <table class="table">
+                    <tr>
                         <th>Date</th>
                         <th>Stage</th>
                         <th>User</th>
                     </tr>
-		{% for opp in opportunitystages %}<tr>
+                    {% for stage in opportunity.opportunitystage_set.all %}
                     <tr>
-                        <td>{{ opp.time_stamp }}</td>
-                        <td>{{ opp.stage }}</td>
-                        <td>{{ opp.user }}</td>
+                        <td>{{ stage.time_stamp|date:"j M Y" }}</td>
+                        <td>{{ stage.stage }}</td>
+                        <td>{{ stage.user }}</td>
                     </tr>
-		{% endfor %}
+                    {% endfor %}
                     </table>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock %}     

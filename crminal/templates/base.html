@@ -76,12 +76,9 @@
           {% endif %}
           </ul>
 	  <div class="pull-right">
-            <form method="GET" action="{% url 'crm:search' %}" class="navbar-form" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q">
-                    <div class="input-group-btn">
-                        <button class="btn" type="submit"><i class="glyphicon glyphicon-search" style="color:white;"></i></button>
-                    </div>
+             <form class="navbar-form navbar-right" method="GET" action="/search/">
+               <input type="text" class="form-control col-lg-8" placeholder="Search Term" name="q">
+           </form>
                 </div>
             </form>
         </div>
